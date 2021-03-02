@@ -1,0 +1,9 @@
+model/Pet.class
+Main.class
+utility/HibernateUtil.class
+repository/VeterinarianDao.class
+model/Veterinarian.class
+repository/ConsultDao.class
+model/Consult.class
+repository/PetDao.class
+service/PetClinicService.class
