@@ -1,8 +1,6 @@
 package repository;
 
 import model.Owner;
-import model.Veterinarian;
-
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
@@ -10,28 +8,28 @@ import utility.HibernateUtil;
 
 import java.util.List;
 
-public class VeterinarianDao {
-    public  Veterinarian findByIdVeterinarian(Long id) {
+public class OwnerDao {
+
+    public Owner findByIdOwner(Long id) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         try {
-            Veterinarian veterinarian = session.find(Veterinarian.class, id);
-            return  veterinarian;
+            Owner owner = session.find(Owner.class, id);
+            return owner;
         } catch (Exception ex) {
             ex.printStackTrace();
             return null;
-        }finally {
+        } finally {
             session.close();
         }
     }
 
-    public  void createVeterinarian(Veterinarian veterinarian) {
+    public void createOwner(Owner owner) {
         Transaction transaction = null;
         try {
             Session session = HibernateUtil.getSessionFactory().openSession();
             transaction = session.beginTransaction();
-            session.save(veterinarian);
+            session.save(owner);
             transaction.commit();
-            System.out.println("veterinarian creat");
         } catch (Exception ex) {
             if (transaction != null) {
                 transaction.rollback();
@@ -41,12 +39,12 @@ public class VeterinarianDao {
 
     }
 
-    public void deleteVeterinarian(Veterinarian veterinarian) {
-            Session session = HibernateUtil.getSessionFactory().openSession();
+    public void deleteOwner(Owner owner) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = null;
         try {
             transaction = session.beginTransaction();
-            session.delete(veterinarian);
+            session.delete(owner);
             transaction.commit();
         } catch (Exception ex) {
             if (transaction != null) {
@@ -56,12 +54,12 @@ public class VeterinarianDao {
         }
     }
 
-    public void updateVeterinarian(Veterinarian veterinarian) {
-            Session session = HibernateUtil.getSessionFactory().openSession();
+    public void updateOwner(Owner owner) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = null;
         try {
             transaction = session.beginTransaction();
-            session.update(veterinarian);
+            session.update(owner);
             transaction.commit();
         } catch (Exception ex) {
             if (transaction != null) {
@@ -70,19 +68,20 @@ public class VeterinarianDao {
             ex.printStackTrace();
         }
     }
-    public List<Veterinarian> findByNameVet (String firstName){
+
+    public List<Owner> findByNameOwner(String firstName) {
         try {
             Session session = HibernateUtil.getSessionFactory().openSession();
-            Query query = session.createQuery("from Veterinarian where firstName=:firstName", Veterinarian.class);
+            Query query = session.createQuery("from Owner where firstName=:firstName", Owner.class);
             query.setParameter("firstName", firstName);
 
-            List<Veterinarian> veterinarianList = query.list();
+            List<Owner> ownerList = query.list();
 
-            return veterinarianList;
+            return ownerList;
         } catch (Exception ex) {
             ex.printStackTrace();
             return null;
         }
     }
-
 }
+

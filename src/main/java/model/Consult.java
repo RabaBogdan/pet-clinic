@@ -82,7 +82,7 @@ public class Consult {
                 ", date='" + date + '\'' +
                 ", description='" + description + '\'' +
                 ", veterinarian=" + veterinarian +
-                ", pet=" + pet +
+                ", testing.pet=" + pet +
                 '}';
     }
 }

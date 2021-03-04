@@ -28,6 +28,11 @@ public class Pet {
     @OneToMany(mappedBy="pet")
     private List<Consult> consults;
 
+//    @ManyToOne
+//    @JoinColumn(name = "owner_id")
+//    private Owner owner;
+
+
     public Pet() {
     }
 
